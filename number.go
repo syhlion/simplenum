@@ -1,6 +1,10 @@
 package simplenum
 
-import "math"
+import (
+	"fmt"
+	"math"
+	"strconv"
+)
 
 //四捨五入
 func Round(v float64, decimals int) float64 {
@@ -23,9 +27,7 @@ func Ceil(v float64, decimals int) float64 {
 
 //無條件捨去
 func Floor(v float64, decimals int) float64 {
-	var pow float64 = 1
-	for i := 0; i < decimals; i++ {
-		pow *= 10
-	}
-	return float64(math.Floor(v*pow)) / pow
+	fs := fmt.Sprintf("%0."+strconv.Itoa(decimals)+"f", v)
+	s, _ := strconv.ParseFloat(fs, 64)
+	return s
 }
